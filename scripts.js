@@ -9,7 +9,17 @@
 
 
 /* click button scroll down script */
+
+
 window.smoothScroll = function(target) {
+
+  
+  const timer = setTimeout(wheelDissappear, 2000);
+
+
+
+
+  // the actual scroll
   var scrollContainer = target;
   do { //find scroll container
       scrollContainer = scrollContainer.parentNode;
@@ -30,6 +40,12 @@ window.smoothScroll = function(target) {
   }
   // start scrolling
   scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+}
+
+// wheel dissappear
+function wheelDissappear() {
+  document.getElementById("loading_container").style.opacity = 0;
+  document.getElementById("loading_container").style.transition = "all 1.5s";
 }
 
 
