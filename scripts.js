@@ -9,15 +9,15 @@
 
 
 /* click button scroll down script */
-
-
 window.smoothScroll = function(target) {
 
-  
-  const timer = setTimeout(wheelDissappear, 2000);
 
+  var link = document.getElementById('emailAddress').value;
+  // alert(link);
 
-
+  // dispare roata, apare poza
+  const timer = setTimeout(wheelDissappear, 7000);
+  const timer2 = setTimeout(gameAppear, 7000);
 
   // the actual scroll
   var scrollContainer = target;
@@ -42,10 +42,30 @@ window.smoothScroll = function(target) {
   scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
 }
 
-// wheel dissappear
+// wheel dissappear, game image appear
 function wheelDissappear() {
   document.getElementById("loading_container").style.opacity = 0;
   document.getElementById("loading_container").style.transition = "all 1.5s";
+
+  
+  
+}
+
+function gameAppear() {
+  document.getElementById("signup").style.transition = "all 2s";
+  document.getElementById("signup").style.zIndex = -1;
+  document.getElementById("signup").style.opacity = 0.8;
+  document.getElementById("signup").style.backgroundImage = "url('assets/games/anno.jpg')";
+  
+  
+      // var image = new Image();
+      // // Image for transition
+      // image.src = "assets/games/anno.jpg";
+      // image.onload = function () {
+      //   $(".call-to-action").css("background-image", 
+      //                     "url('" + image.src + "')");
+      // }
+
 }
 
 
