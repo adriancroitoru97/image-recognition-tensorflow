@@ -35,13 +35,13 @@ function displayResults(vect) {
   console.log(indvect);
 
   if (indvect[0] == 0) {
-    setTimeout(gameAppear("assets/games/assasn.jpg"), 7000);
+    gameAppear("assets/games/assasn.jpg");
   } else if (indvect[0] == 1) {
-    setTimeout(gameAppear("assets/games/grow.jpg"), 7000);
+    gameAppear("assets/games/grow.jpg");
   } else if (indvect[0] == 2) {
-    setTimeout(gameAppear("assets/games/rainbow.jpg"), 7000);
+    gameAppear("assets/games/rainbow.jpg");
   } else {
-    setTimeout(gameAppear("assets/games/anno.jpg"), 7000);
+    gameAppear("assets/games/anno.jpg");
   }
 }
 
@@ -50,15 +50,9 @@ function displayResults(vect) {
 /* click button scroll down script */
   window.smoothScroll = function(target) {
 
-  // apelam aiul
-  var link = document.getElementById('emailAddress').value;
-  testModel(link).then(displayResults(vect));
-
-  
 
   // dispare roata, apare poza
-  const timer = setTimeout(wheelDissappear, 7000);
-  const timer2 = setTimeout(gameAppear, 7000);
+ const timer = setTimeout(wheelDissappear, 7000);
 
   // the actual scroll
   var scrollContainer = target;
@@ -88,15 +82,18 @@ function wheelDissappear() {
   document.getElementById("loading_container").style.opacity = 0;
   document.getElementById("loading_container").style.transition = "all 1.5s";
 
-  
-  
+  // apelam aiul
+  var link = document.getElementById('emailAddress').value;
+  testModel(link);
 }
 
 function gameAppear(image) {
-  document.getElementById("signup").style.transition = "all 2s";
+  document.getElementById("signup").style.transition = "all 0.5s";
   document.getElementById("signup").style.zIndex = -1;
   document.getElementById("signup").style.opacity = 0.8;
-  document.getElementById("signup").style.backgroundImage = "url(image)";
+  document.getElementById("signup").style.backgroundImage = "url(" + image + ")";
+  document.getElementById("signup").style.backgroundSize = "cover";
+  document.getElementById("signup").style.height = "100vh";
   
   
       // var image = new Image();
@@ -240,12 +237,12 @@ async function getImage(model, filename) {
       const prediction = model.predict(picarray)
 
       prediction.softmax().print();
-      console.log("PULA")
-      return prediction.softmax().dataSync();
+      setTimeout(displayResults(prediction.softmax().dataSync()), 7000);
   }
 }
 
 async function testModel(link) {
   const model = await tf.loadLayersModel('modelxdjs/tensor/model.json');
   vect = getImage(model, link);
+  
 };
