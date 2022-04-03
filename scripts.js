@@ -34,22 +34,62 @@ function displayResults(vect) {
 
   console.log(indvect);
 
+  // var elem = document.createElement("img");
+  // elem.setAttribute("height", "200");
+  // elem.setAttribute("width", "200");
+
   if (indvect[0] == 0) {
     gameAppear("assets/games/assasn.jpg");
+    document.getElementsByClassName("first_element")[0].innerHTML = "Assassin's Creed Origins" + "<br />" + parseInt(vect[0] * 10000) / 100 + "% confidence";
   } else if (indvect[0] == 1) {
     gameAppear("assets/games/grow.jpg");
+    document.getElementsByClassName("first_element")[0].innerHTML = "Grow Home" + "<br />" + parseInt(vect[0] * 10000) / 100 + "% confidence";
   } else if (indvect[0] == 2) {
     gameAppear("assets/games/rainbow.jpg");
+    document.getElementsByClassName("first_element")[0].innerHTML = "Rainbow Six Siege" + "<br />" + parseInt(vect[0] * 10000) / 100 + "% confidence";
   } else {
     gameAppear("assets/games/anno.jpg");
+    document.getElementsByClassName("first_element")[0].innerHTML = "Anno 2205" + "<br />" + parseInt(vect[0] * 10000) / 100 + "% confidence";
   }
+
+  if (indvect[1] == 0) {
+    document.getElementsByClassName("little_element")[0].innerHTML = "Assassin's Creed Origins" + "<br />" + parseInt(vect[1] * 10000) / 100 + "% confidence";
+  } else if (indvect[1] == 1) {
+    document.getElementsByClassName("little_element")[0].innerHTML = "Grow Home" + "<br />" + parseInt(vect[1] * 10000) / 100 + "% confidence";
+  } else if (indvect[1] == 2) {
+    document.getElementsByClassName("little_element")[0].innerHTML = "Rainbow Six Siege" + "<br />" + parseInt(vect[1] * 10000) / 100 + "% confidence";
+  } else {
+    document.getElementsByClassName("little_element")[0].innerHTML = "Anno 2205" + "<br />" + parseInt(vect[1] * 10000) / 100 + "% confidence"; 
+  }
+
+  if (indvect[2] == 0) {
+    document.getElementsByClassName("little_element")[1].innerHTML = "Assassin's Creed Origins" + "<br />" + parseInt(vect[2] * 10000) / 100 + "% confidence";
+  } else if (indvect[2] == 1) {
+    document.getElementsByClassName("little_element")[1].innerHTML = "Grow Home" + "<br />" + parseInt(vect[2] * 10000) / 100 + "% confidence";
+  } else if (indvect[2] == 2) {
+    document.getElementsByClassName("little_element")[1].innerHTML = "Rainbow Six Siege" + "<br />" + parseInt(vect[2] * 10000) / 100 + "% confidence";
+  } else {
+    document.getElementsByClassName("little_element")[1].innerHTML = "Anno 2205" + "<br />" + parseInt(vect[2] * 10000) / 100 + "% confidence"; 
+  }
+
+
+
+  if (indvect[3] == 0) {
+    document.getElementsByClassName("little_element")[2].innerHTML = "Assassin's Creed Origins" + "<br />" + parseInt(vect[3] * 10000) / 100 + "% confidence";
+  } else if (indvect[3] == 1) {
+    document.getElementsByClassName("little_element")[2].innerHTML = "Grow Home" + "<br />" + parseInt(vect[3] * 10000) / 100 + "% confidence";
+  } else if (indvect[3] == 2) {
+    document.getElementsByClassName("little_element")[2].innerHTML = "Rainbow Six Siege" + "<br />" + parseInt(vect[3] * 10000) / 100 + "% confidence";
+  } else {
+    document.getElementsByClassName("little_element")[2].innerHTML = "Anno 2205" + "<br />" + parseInt(vect[3] * 10000) / 100 + "% confidence"; 
+  }
+
 }
 
 
 
 /* click button scroll down script */
   window.smoothScroll = function(target) {
-
 
   // dispare roata, apare poza
  const timer = setTimeout(wheelDissappear, 7000);
@@ -95,15 +135,6 @@ function gameAppear(image) {
   document.getElementById("signup").style.backgroundSize = "cover";
   document.getElementById("signup").style.height = "100vh";
   
-  
-      // var image = new Image();
-      // // Image for transition
-      // image.src = "assets/games/anno.jpg";
-      // image.onload = function () {
-      //   $(".call-to-action").css("background-image", 
-      //                     "url('" + image.src + "')");
-      // }
-
 }
 
 
@@ -244,5 +275,11 @@ async function getImage(model, filename) {
 async function testModel(link) {
   const model = await tf.loadLayersModel('modelxdjs/tensor/model.json');
   vect = getImage(model, link);
-  
+
+
+  var elem = document.createElement("img");
+  elem.setAttribute("src", link);
+  elem.setAttribute("height", "200");
+  elem.setAttribute("width", "200");
+  document.getElementById("introduced_image").appendChild(elem);
 };
