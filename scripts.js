@@ -8,12 +8,53 @@
 
 
 
+let vect=[]
+
+/* refresh page */
+function refresh(){
+  window.location.reload();
+}
+
+
+function displayResults(vect) {
+  let indvect = [0, 1, 2, 3];
+  for (var i = 0; i < 3; i++) {
+    for (var j = i + 1; j < 4; j++) {
+      if (vect[i] < vect[j]) {
+        let aux = vect[i];
+        vect[i] = vect[j];
+        vect[j] = aux;
+
+        aux = indvect[i];
+        indvect[i] = indvect[j];
+        indvect[j] = aux;
+      }
+    }
+  }
+
+  console.log(indvect);
+
+  if (indvect[0] == 0) {
+    setTimeout(gameAppear("assets/games/assasn.jpg"), 7000);
+  } else if (indvect[0] == 1) {
+    setTimeout(gameAppear("assets/games/grow.jpg"), 7000);
+  } else if (indvect[0] == 2) {
+    setTimeout(gameAppear("assets/games/rainbow.jpg"), 7000);
+  } else {
+    setTimeout(gameAppear("assets/games/anno.jpg"), 7000);
+  }
+}
+
+
+
 /* click button scroll down script */
-window.smoothScroll = function(target) {
+  window.smoothScroll = function(target) {
 
-
+  // apelam aiul
   var link = document.getElementById('emailAddress').value;
-  // alert(link);
+  testModel(link).then(displayResults(vect));
+
+  
 
   // dispare roata, apare poza
   const timer = setTimeout(wheelDissappear, 7000);
@@ -51,11 +92,11 @@ function wheelDissappear() {
   
 }
 
-function gameAppear() {
+function gameAppear(image) {
   document.getElementById("signup").style.transition = "all 2s";
   document.getElementById("signup").style.zIndex = -1;
   document.getElementById("signup").style.opacity = 0.8;
-  document.getElementById("signup").style.backgroundImage = "url('assets/games/anno.jpg')";
+  document.getElementById("signup").style.backgroundImage = "url(image)";
   
   
       // var image = new Image();
@@ -174,3 +215,37 @@ function animate() {
   draw();
   requestAnimationFrame(animate);
 }
+
+
+
+
+// AI part
+async function getImage(model, filename) {
+   
+  var img = new Image();
+  img.src = filename;
+ 
+  img.crossOrigin = 'anoymous';
+
+  img.onload = () => {
+      console.log(filename)
+      var pic1 = tf.browser.fromPixels(img, 3);
+
+      pic1 = tf.image.resizeBilinear(pic1, [180, 180]).div(tf.scalar(255))
+
+      let picarray = []
+
+      picarray.push( pic1.expandDims(0) )
+  
+      const prediction = model.predict(picarray)
+
+      prediction.softmax().print();
+      console.log("PULA")
+      return prediction.softmax().dataSync();
+  }
+}
+
+async function testModel(link) {
+  const model = await tf.loadLayersModel('modelxdjs/tensor/model.json');
+  vect = getImage(model, link);
+};
