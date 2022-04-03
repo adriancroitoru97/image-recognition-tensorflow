@@ -11395,6 +11395,7 @@ footer.footer {
   margin: auto;
   transform: rotate(45deg);
   top: 0; bottom: 0; left: 0; right: 0;
+  z-index: 1;
 }
 
 
@@ -11405,4 +11406,47 @@ footer.footer {
   width: 50vw;
   height: 20vh;
   margin: auto;
+}
+
+.top_elements {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  background-color: #000;
+  opacity: 0.6;
+
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  height: 90vh;
+  z-index: -1;
+}
+
+.first_element {
+  display: block;
+  position: inherit;
+  background-color: red;
+  opacity: 0.6;
+
+  top: 8%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  height: 40%;
+  width: 60%
+}
+
+.little_element {
+  display: inline-block;
+  position: inherit;
+  background-color: red;
+  opacity: 0.6;
+
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  top: 15%;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  width: 28%;
 }
