@@ -11377,7 +11377,7 @@ header.masthead h1, header.masthead .h1 {
   width: 100%;
   top: 0;
   left: 0;
-  opacity: 0.5;
+  opacity: 0;
 }
 
 footer.footer {
@@ -11450,6 +11450,7 @@ footer.footer {
   display: inline-block;
   position: absolute;
   background-color: #F4F4F5;
+  background-image: ;
 
   margin-left: 2.5%;
   margin-right: 2.5%;
@@ -11463,11 +11464,14 @@ footer.footer {
 
   border-radius: 20px;
 
-  padding-top: 8%;
+  /* padding-top: 8%; */
+  padding-top: 2.5%;
+  padding-bottom: 5%;
   font-family: inherit;
   font-size: 2.5vw;
   text-align: center;
   color: #04414d;
+
 }
 
 .little_element {

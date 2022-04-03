@@ -122,8 +122,17 @@ function wheelDissappear() {
   document.getElementById("loading_container").style.opacity = 0;
   document.getElementById("loading_container").style.transition = "all 1.5s";
 
-  // apelam aiul
+  // link - linkul imaginii
   var link = document.getElementById('emailAddress').value;
+  //pun imaginea in box
+  // var elem = document.createElement("img");
+  // elem.setAttribute("src", link);
+  // elem.setAttribute("height", "200");
+  // elem.setAttribute("width", "320");
+  // document.getElementsByClassName("introduced_image")[0].appendChild(elem);
+
+  document.getElementsByClassName("introduced_image")[0].setAttribute("style", "background-image: url(" + link + ");background-repeat: no-repeat;background-size: cover;");
+  // apelez AI - aiu
   testModel(link);
 }
 
@@ -276,10 +285,4 @@ async function testModel(link) {
   const model = await tf.loadLayersModel('modelxdjs/tensor/model.json');
   vect = getImage(model, link);
 
-
-  var elem = document.createElement("img");
-  elem.setAttribute("src", link);
-  elem.setAttribute("height", "200");
-  elem.setAttribute("width", "200");
-  document.getElementById("introduced_image").appendChild(elem);
 };
